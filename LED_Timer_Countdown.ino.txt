@@ -1,0 +1,32 @@
+// LED Countdown Timer using Arduino
+
+const int ledPin = 13;
+int countdown = 10;  // 10-second timer
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Countdown Timer Starting...");
+}
+
+void loop() {
+  while (countdown > 0) {
+    Serial.print("Time left: ");
+    Serial.print(countdown);
+    Serial.println(" sec");
+    delay(1000);
+    countdown--;
+  }
+
+  // Time is up – blink LED rapidly
+  Serial.println("⏰ Time's up!");
+  for (int i = 0; i < 10; i++) {
+    digitalWrite(ledPin, HIGH);
+    delay(200);
+    digitalWrite(ledPin, LOW);
+    delay(200);
+  }
+
+  // Reset for demo
+  countdown = 10;
+}
